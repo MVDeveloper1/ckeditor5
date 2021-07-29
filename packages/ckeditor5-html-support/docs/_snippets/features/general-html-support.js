@@ -17,6 +17,8 @@ import CloudServices from '@ckeditor/ckeditor5-cloud-services/src/cloudservices'
 import SourceEditing from '@ckeditor/ckeditor5-source-editing/src/sourceediting';
 import GeneralHtmlSupport from '@ckeditor/ckeditor5-html-support/src/generalhtmlsupport';
 
+import './general-html-support.css';
+
 ClassicEditor
 	.create( document.querySelector( '#snippet-general-html-support' ), {
 		plugins: [
@@ -30,8 +32,6 @@ ClassicEditor
 		],
 		toolbar: {
 			items: [
-				'sourceEditing',
-				'|',
 				'heading',
 				'|',
 				'bold',
@@ -49,7 +49,9 @@ ClassicEditor
 				'insertTable',
 				'|',
 				'undo',
-				'redo'
+				'redo',
+				'|',
+				'sourceEditing'
 			],
 			viewportTopOffset: window.getViewportTopOffsetConfig()
 		},
@@ -70,32 +72,12 @@ ClassicEditor
 
 		htmlSupport: {
 			allow: [
-				// Enables <div>, <details>, and <summary> elements with all kind of attributes.
+				// Enables all HTML features.
 				{
-					name: /^(div|details|summary)$/,
-					styles: true,
+					name: /.*/,
+					attributes: true,
 					classes: true,
-					attributes: true
-				},
-
-				// Extends the existing Paragraph and Heading features
-				// with classes and data-* attributes.
-				{
-					name: /^(p|h[2-4])$/,
-					classes: true,
-					attributes: /^data-/
-				},
-
-				// Enables <span>s with any inline styles.
-				{
-					name: 'span',
 					styles: true
-				},
-
-				// Enables <abbr>s with the title attribute.
-				{
-					name: 'abbr',
-					attributes: [ 'title' ]
 				}
 			]
 		}
@@ -107,7 +89,10 @@ ClassicEditor
 			target: window.findToolbarItem( editor.ui.view.toolbar,
 				item => item.label && item.label === 'Source' ),
 			text: 'Switch to the source mode to check out the source of the content and play with it.',
-			editor
+			editor,
+			tippyOptions: {
+				placement: 'bottom-end'
+			}
 		} );
 	} )
 	.catch( err => {
