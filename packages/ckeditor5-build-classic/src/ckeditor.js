@@ -57,7 +57,7 @@ ClassicEditor.builtinPlugins = [
 
 // Editor configuration.
 ClassicEditor.defaultConfig = {
-	placeholder: 'Comece a digitar aqui...',
+	placeholder: 'Matéria',
 	toolbar: {
 		viewportTopOffset: 76, // Header height in px
 		items: [
