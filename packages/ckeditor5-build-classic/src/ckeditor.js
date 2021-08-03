@@ -59,7 +59,7 @@ ClassicEditor.builtinPlugins = [
 ClassicEditor.defaultConfig = {
 	placeholder: 'Matéria',
 	toolbar: {
-		viewportTopOffset: 76, // Header height in px
+		viewportTopOffset: 112, // Header + breadcrumb height in px
 		items: [
 			'heading',
 			'|',
